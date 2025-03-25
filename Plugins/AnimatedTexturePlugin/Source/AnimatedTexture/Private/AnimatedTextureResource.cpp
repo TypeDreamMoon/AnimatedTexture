@@ -14,7 +14,7 @@
 #include "DeviceProfiles/DeviceProfile.h"	// Engine
 #include "DeviceProfiles/DeviceProfileManager.h"	// Engine
 
-FAnimatedTextureResource::FAnimatedTextureResource(UAnimatedTexture2D* InOwner) :Owner(InOwner)
+FAnimatedTextureResource::FAnimatedTextureResource(UAnimatedTexture2D* InOwner) : Owner(InOwner)
 {
 }
 
@@ -62,7 +62,7 @@ void FAnimatedTextureResource::InitRHI(FRHICommandListBase& RHICmdList)
 	);
 	SamplerStateRHI = GetOrCreateSamplerState(SamplerStateInitializer);
 
-	ETextureCreateFlags  Flags = TexCreate_None;
+	ETextureCreateFlags Flags = TexCreate_None;
 	if (!Owner->SRGB)
 		bIgnoreGammaConversions = true;
 

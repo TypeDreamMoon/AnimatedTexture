@@ -30,10 +30,11 @@ UMtlExpTextureSampleParameterAnim::UMtlExpTextureSampleParameterAnim(const FObje
 		ConstructorHelpers::FObjectFinder<UTexture2D> DefaultTexture;
 		FText NAME_Texture;
 		FText NAME_Parameters;
+
 		FConstructorStatics()
 			: DefaultTexture(TEXT("/Engine/EngineResources/DefaultTexture"))
-			, NAME_Texture(LOCTEXT("Texture", "Texture"))
-			, NAME_Parameters(LOCTEXT("Parameters", "Parameters"))
+			  , NAME_Texture(LOCTEXT("Texture", "Texture"))
+			  , NAME_Parameters(LOCTEXT("Parameters", "Parameters"))
 		{
 		}
 	};

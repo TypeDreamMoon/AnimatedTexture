@@ -36,7 +36,7 @@ public:
 private:
 	void ClearFrameBuffer(ColorMapObject* ColorMap, bool bTransparent);
 	void GCB_Background(int left, int top, int width, int height,
-		ColorMapObject* colorMap, bool bTransparent);
+	                    ColorMapObject* colorMap, bool bTransparent);
 
 private:
 	int mCurrentFrame = 0;

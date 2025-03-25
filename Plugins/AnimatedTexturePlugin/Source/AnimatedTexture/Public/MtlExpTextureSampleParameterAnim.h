@@ -18,11 +18,9 @@ UCLASS(collapsecategories, hidecategories = Object)
 class ANIMATEDTEXTURE_API UMtlExpTextureSampleParameterAnim : public UMaterialExpressionTextureSampleParameter
 {
 	GENERATED_UCLASS_BODY()
-
-
 	//~ Begin UMaterialExpression Interface
 #if WITH_EDITOR
-		virtual void GetCaption(TArray<FString>& OutCaptions) const override;
+	virtual void GetCaption(TArray<FString>& OutCaptions) const override;
 #endif // WITH_EDITOR
 	//~ End UMaterialExpression Interface
 
@@ -30,5 +28,4 @@ class ANIMATEDTEXTURE_API UMtlExpTextureSampleParameterAnim : public UMaterialEx
 	virtual bool TextureIsValid(UTexture* InTexture, FString& OutMessage);
 	virtual void SetDefaultTexture();
 	//~ End UMaterialExpressionTextureSampleParameter Interface
-	
 };

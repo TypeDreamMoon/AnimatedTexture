@@ -1,7 +1,13 @@
 # Animated Texture Plugin for Unreal Engine 5
 
 ----
+
+Support `5.5`
+
+
+
 This plugin allows you to import animated pictures into your Unreal Engine 5 project as a new AnimatedTexture asset type.
+
 - [x] Support .GIF files
 - [x] Support .Webp files
 
@@ -18,6 +24,7 @@ This plugin allows you to import animated pictures into your Unreal Engine 5 pro
 ## Compatibility
 
 The plugin should work on all platforms the Unreal Engine 5 supports, but only been tested on the following platform:
+
 - [x] Windows 64
 - [x] MacOS
 
@@ -28,5 +35,3 @@ The plugin should work on all platforms the Unreal Engine 5 supports, but only b
 ![UMG DEMO](./Docs/images/umg.png)
 
 ![Playback API DEMO](./Docs/images/api.png)
-
-

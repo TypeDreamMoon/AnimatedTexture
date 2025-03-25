@@ -16,7 +16,10 @@ class FAnimatedTextureDecoder
 {
 public:
 	FAnimatedTextureDecoder() = default;
-	virtual ~FAnimatedTextureDecoder() {}
+
+	virtual ~FAnimatedTextureDecoder()
+	{
+	}
 
 	virtual bool LoadFromMemory(const uint8* InBuffer, uint32 InBufferSize) = 0;
 	virtual void Close() = 0;

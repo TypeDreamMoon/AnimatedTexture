@@ -82,7 +82,7 @@ uint32 FGIFDecoder::NextFrame(uint32 DefaultFrameDelay, bool bLooping)
 			GraphicsControlBlock gcb;
 			if (DGifExtensionToGCB(eb.ByteCount, eb.Bytes, &gcb) != GIF_ERROR)
 			{
-				delayTime = gcb.DelayTime * 10;  // 1/100 second
+				delayTime = gcb.DelayTime * 10; // 1/100 second
 				if (gcb.TransparentColor != NO_TRANSPARENT_COLOR)
 					transparentColor = gcb.TransparentColor;
 
@@ -99,9 +99,9 @@ uint32 FGIFDecoder::NextFrame(uint32 DefaultFrameDelay, bool bLooping)
 				case DISPOSE_BACKGROUND:
 					//  Restore to background color. The area used by the graphic must
 					//  be restored to the background color.
-					if (!mDoNotDispose)  // MY HACK!!!
+					if (!mDoNotDispose) // MY HACK!!!
 						GCB_Background(id.Left, id.Top, id.Width, id.Height, colorMap,
-							transparentColor != NO_TRANSPARENT_COLOR);
+						               transparentColor != NO_TRANSPARENT_COLOR);
 					break;
 				case DISPOSE_PREVIOUS:
 					// Restore to previous. The decoder is required to restore the area
@@ -109,16 +109,16 @@ uint32 FGIFDecoder::NextFrame(uint32 DefaultFrameDelay, bool bLooping)
 					// the graphic.
 					//std::cout << "DISPOSE_PREVIOUS" << std::endl;
 					break;
-				}// end of switch
+				} // end of switch
 			}
-		}  // end of if
-	}    // end of for
+		} // end of if
+	} // end of for
 
 	// first frame -- draw the background
 	if (mCurrentFrame == 0)
 	{
 		ClearFrameBuffer(mGIF->SColorMap,
-			transparentColor != NO_TRANSPARENT_COLOR);
+		                 transparentColor != NO_TRANSPARENT_COLOR);
 	}
 
 	// decode current image to frame buffer
@@ -149,12 +149,13 @@ uint32 FGIFDecoder::NextFrame(uint32 DefaultFrameDelay, bool bLooping)
 				out.B = colorEntry.Blue;
 				out.A = (c == transparentColor ? 0 : 255);
 			}
-		}// end of x
-	}  // end of y
+		} // end of x
+	} // end of y
 
 	// next frame
 	mCurrentFrame++;
-	if (mCurrentFrame >= mGIF->ImageCount) {
+	if (mCurrentFrame >= mGIF->ImageCount)
+	{
 		mDoNotDispose = false;
 		mCurrentFrame = bLooping ? 0 : mGIF->ImageCount - 1;
 		mLoopCount++;
@@ -208,9 +209,9 @@ uint32 FGIFDecoder::GetDuration(uint32 DefaultFrameDelay) const
 			{
 				GraphicsControlBlock gcb;
 				if (DGifExtensionToGCB(eb.ByteCount, eb.Bytes, &gcb) != GIF_ERROR)
-					delayTime = gcb.DelayTime * 10;  // 1/100 second
+					delayTime = gcb.DelayTime * 10; // 1/100 second
 			}
-		}// end of for(ext)
+		} // end of for(ext)
 		duration += delayTime == 0 ? DefaultFrameDelay : delayTime;
 	}
 
@@ -237,35 +238,35 @@ bool FGIFDecoder::SupportsTransparency() const
 						return true;
 				}
 			}
-		}// end of for(ext)
+		} // end of for(ext)
 	}
 	return false;
 }
 
 void FGIFDecoder::ClearFrameBuffer(ColorMapObject* ColorMap,
-	bool bTransparent) 
+                                   bool bTransparent)
 {
-	FColor bg = { 0, 0, 0, 255 };
+	FColor bg = {0, 0, 0, 255};
 
 	if (ColorMap && mGIF->SBackGroundColor >= 0 &&
-		mGIF->SBackGroundColor < ColorMap->ColorCount) 
+		mGIF->SBackGroundColor < ColorMap->ColorCount)
 	{
 		const GifColorType& colorEntry =
 			mGIF->SColorMap->Colors[mGIF->SBackGroundColor];
 		uint8_t alpha = bTransparent ? 0 : 255;
-		bg = { colorEntry.Red, colorEntry.Green, colorEntry.Blue, alpha };
+		bg = {colorEntry.Red, colorEntry.Green, colorEntry.Blue, alpha};
 	}
 
 	for (auto& pixel : mFrameBuffer) pixel = bg;
 }
 
 void FGIFDecoder::GCB_Background(int left, int top, int width, int height,
-	ColorMapObject* colorMap,
-	bool bTransparent)
+                                 ColorMapObject* colorMap,
+                                 bool bTransparent)
 {
 	const GifColorType& colorEntry = colorMap->Colors[mGIF->SBackGroundColor];
 	uint8_t alpha = static_cast<uint8_t>(bTransparent ? 0 : 255);
-	FColor bg = { colorEntry.Red, colorEntry.Green, colorEntry.Blue, alpha };
+	FColor bg = {colorEntry.Red, colorEntry.Green, colorEntry.Blue, alpha};
 
 	int frameWidth = GetWidth();
 	for (int y = top; y < top + height; y++)
@@ -275,5 +276,5 @@ void FGIFDecoder::GCB_Background(int left, int top, int width, int height,
 			int p = y * frameWidth + x;
 			mFrameBuffer[p] = bg;
 		}
-	}  // end of y
+	} // end of y
 }
