@@ -37,52 +37,52 @@ class ANIMATEDTEXTURE_API UAnimatedTexture2D : public UTexture, public FTickable
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture, meta = (DisplayName = "X-axis Tiling Method"), AssetRegistrySearchable, AdvancedDisplay)
-		TEnumAsByte<enum TextureAddress> AddressX;
+	TEnumAsByte<enum TextureAddress> AddressX;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture, meta = (DisplayName = "Y-axis Tiling Method"), AssetRegistrySearchable, AdvancedDisplay)
-		TEnumAsByte<enum TextureAddress> AddressY;
+	TEnumAsByte<enum TextureAddress> AddressY;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture)
-		bool SupportsTransparency = true;
+	bool SupportsTransparency = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture)
-		float DefaultFrameDelay = 1.0f / 10;	// used while Frame.Delay==0
+	float DefaultFrameDelay = 1.0f / 10; // used while Frame.Delay==0
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture)
-		float PlayRate = 1.0f;
+	float PlayRate = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimatedTexture)
-		bool bLooping = true;
+	bool bLooping = true;
 
-public:	// Playback APIs
+public: // Playback APIs
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		void Play();
-
-	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		void PlayFromStart();
+	void Play();
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		void Stop();
+	void PlayFromStart();
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		bool IsPlaying() const { return bPlaying; }
+	void Stop();
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		void SetLooping(bool bNewLooping) { bLooping = bNewLooping; }
+	bool IsPlaying() const { return bPlaying; }
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		bool IsLooping() const { return bLooping; }
+	void SetLooping(bool bNewLooping) { bLooping = bNewLooping; }
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		void SetPlayRate(float NewRate) { PlayRate = NewRate; }
+	bool IsLooping() const { return bLooping; }
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		float GetPlayRate() const { return PlayRate; }
+	void SetPlayRate(float NewRate) { PlayRate = NewRate; }
 
 	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
-		float GetAnimationLength() const;
+	float GetPlayRate() const { return PlayRate; }
 
-public:	// UTexture Interface
+	UFUNCTION(BlueprintCallable, Category = AnimatedTexture)
+	float GetAnimationLength() const;
+
+public: // UTexture Interface
 	virtual float GetSurfaceWidth() const override;
 	virtual float GetSurfaceHeight() const override;
 	virtual float GetSurfaceDepth() const override { return 0; }
@@ -92,16 +92,19 @@ public:	// UTexture Interface
 	virtual FTextureResource* CreateResource() override;
 	virtual EMaterialValueType GetMaterialType() const override { return MCT_Texture2D; }
 
-public:	// FTickableGameObject Interface
+public: // FTickableGameObject Interface
 	virtual void Tick(float DeltaTime) override;
+
 	virtual bool IsTickable() const override
 	{
 		return true;
 	}
+
 	virtual TStatId GetStatId() const
 	{
 		RETURN_QUICK_DECLARE_CYCLE_STAT(UAnimatedTexture2D, STATGROUP_Tickables);
 	}
+
 	virtual bool IsTickableInEditor() const
 	{
 		return true;
@@ -111,7 +114,8 @@ public:	// FTickableGameObject Interface
 	{
 		return GetWorld();
 	}
-public:	// UObject Interface.
+
+public: // UObject Interface.
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif // WITH_EDITOR
@@ -123,10 +127,10 @@ public: // Internal APIs
 
 private:
 	UPROPERTY()
-		EAnimatedTextureType FileType = EAnimatedTextureType::None;
+	EAnimatedTextureType FileType = EAnimatedTextureType::None;
 
 	UPROPERTY()
-		TArray<uint8> FileBlob;
+	TArray<uint8> FileBlob;
 
 private:
 	TSharedPtr<FAnimatedTextureDecoder, ESPMode::ThreadSafe> Decoder;

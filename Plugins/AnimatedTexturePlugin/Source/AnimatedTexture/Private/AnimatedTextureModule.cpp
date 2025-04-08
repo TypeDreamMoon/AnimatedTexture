@@ -24,6 +24,6 @@ void FAnimatedTextureModule::ShutdownModule()
 }
 
 #undef LOCTEXT_NAMESPACE
-	
+
 DEFINE_LOG_CATEGORY(LogAnimTexture);
 IMPLEMENT_MODULE(FAnimatedTextureModule, AnimatedTexture)

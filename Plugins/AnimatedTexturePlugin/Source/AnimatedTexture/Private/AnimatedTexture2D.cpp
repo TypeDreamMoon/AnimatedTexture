@@ -96,7 +96,7 @@ void UAnimatedTexture2D::PostEditChangeProperty(FPropertyChangedEvent& PropertyC
 			RequiresNotifyMaterials = true;
 			ResetAnimState = true;
 		}
-	}// end of if(prop is valid)
+	} // end of if(prop is valid)
 
 	if (ResetAnimState)
 	{

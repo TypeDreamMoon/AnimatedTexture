@@ -38,5 +38,4 @@ private:
 
 private:
 	UAnimatedTexture2D* Owner;
-
 };

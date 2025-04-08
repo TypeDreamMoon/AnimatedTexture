@@ -32,7 +32,7 @@ bool FWebpDecoder::LoadFromMemory(const uint8* InBuffer, uint32 InBufferSize)
 	opt.color_mode = MODE_BGRA;
 	opt.use_threads = 0;
 
-	WebPData WData = { InBuffer, InBufferSize };
+	WebPData WData = {InBuffer, InBufferSize};
 	Decoder = WebPAnimDecoderNew(&WData, &opt);
 	if (!Decoder)
 	{
@@ -41,7 +41,8 @@ bool FWebpDecoder::LoadFromMemory(const uint8* InBuffer, uint32 InBufferSize)
 	}
 
 	// get anim info
-	if (!WebPAnimDecoderGetInfo(Decoder, &AnimInfo)) {
+	if (!WebPAnimDecoderGetInfo(Decoder, &AnimInfo))
+	{
 		UE_LOG(LogAnimTexture, Error, TEXT("FWebpDecoder: Error getting global info about the animation."));
 		return false;
 	}
@@ -49,7 +50,8 @@ bool FWebpDecoder::LoadFromMemory(const uint8* InBuffer, uint32 InBufferSize)
 	// TODO
 	int Timestamp = 0;
 	uint8* Buffer = nullptr;
-	while (WebPAnimDecoderHasMoreFrames(Decoder)) {
+	while (WebPAnimDecoderHasMoreFrames(Decoder))
+	{
 		WebPAnimDecoderGetNext(Decoder, &Buffer, &Timestamp);
 	}
 	WebPAnimDecoderReset(Decoder);
@@ -98,7 +100,7 @@ uint32 FWebpDecoder::NextFrame(uint32 DefaultFrameDelay, bool bLooping)
 void FWebpDecoder::Reset()
 {
 	WebPAnimDecoderReset(Decoder);
-	FrameBuffer = nullptr; 
+	FrameBuffer = nullptr;
 }
 
 const FColor* FWebpDecoder::GetFrameBuffer() const
@@ -115,5 +117,3 @@ bool FWebpDecoder::SupportsTransparency() const
 {
 	return Features.has_alpha != 0;
 }
-
-
