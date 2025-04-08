@@ -21,7 +21,7 @@ UCLASS()
 class ANIMATEDTEXTUREEDITOR_API UAnimatedTextureThumbnailRenderer : public UThumbnailRenderer
 {
 	GENERATED_BODY()
-	
+
 public:
 	// Begin UThumbnailRenderer Object
 	virtual void GetThumbnailSize(UObject* Object, float Zoom, uint32& OutWidth, uint32& OutHeight) const override;

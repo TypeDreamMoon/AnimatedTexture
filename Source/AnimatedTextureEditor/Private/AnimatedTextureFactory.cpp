@@ -50,7 +50,8 @@ UObject* UAnimatedTextureFactory::FactoryCreateBinary(UClass* InClass, UObject* 
 
 	// if the texture already exists, remember the user settings
 	UAnimatedTexture2D* ExistingTexture = FindObject<UAnimatedTexture2D>(InParent, *InName.ToString());
-	if (ExistingTexture) {
+	if (ExistingTexture)
+	{
 		// TODO: use existing object settings
 	}
 
@@ -59,8 +60,9 @@ UObject* UAnimatedTextureFactory::FactoryCreateBinary(UClass* InClass, UObject* 
 	// call parent method to create/overwrite anim texture object
 	UAnimatedTexture2D* AnimTexture = Cast<UAnimatedTexture2D>(
 		CreateOrOverwriteAsset(InClass, InParent, InName, Flags)
-		);
-	if (AnimTexture == nullptr) {
+	);
+	if (AnimTexture == nullptr)
+	{
 		UE_LOG(LogAnimTextureEditor, Error, TEXT("Create Animated Texture FAILED, Name=%s."), *(InName.ToString()));
 		return nullptr;
 	}
@@ -89,7 +91,8 @@ UObject* UAnimatedTextureFactory::FactoryCreateBinary(UClass* InClass, UObject* 
 bool UAnimatedTextureFactory::CanReimport(UObject* Obj, TArray<FString>& OutFilenames)
 {
 	UAnimatedTexture2D* pTex = Cast<UAnimatedTexture2D>(Obj);
-	if (pTex) {
+	if (pTex)
+	{
 		pTex->AssetImportData->ExtractFilenames(OutFilenames);
 		return true;
 	}

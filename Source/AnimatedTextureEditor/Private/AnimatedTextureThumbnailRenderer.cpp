@@ -43,14 +43,14 @@ void UAnimatedTextureThumbnailRenderer::Draw(UObject* Object, int32 X, int32 Y, 
 			const int32 CheckerDensity = 8;
 			UTexture2D* Checker = UThumbnailManager::Get().CheckerboardTexture;
 			Canvas->DrawTile(
-				0.0f, 0.0f, Width, Height,							// Dimensions
-				0.0f, 0.0f, CheckerDensity, CheckerDensity,			// UVs
-				FLinearColor::White, Checker->GetResource());			// Tint & Texture
+				0.0f, 0.0f, Width, Height, // Dimensions
+				0.0f, 0.0f, CheckerDensity, CheckerDensity, // UVs
+				FLinearColor::White, Checker->GetResource()); // Tint & Texture
 		}
 
 		// Use A canvas tile item to draw
 		FCanvasTileItem CanvasTile(FVector2D(X, Y), Texture->GetResource(), FVector2D(Width, Height), FLinearColor::White);
 		CanvasTile.BlendMode = Texture->SupportsTransparency ? SE_BLEND_Translucent : SE_BLEND_Opaque;
 		CanvasTile.Draw(Canvas);
-	}// end of if(texture is valid)
+	} // end of if(texture is valid)
 }
